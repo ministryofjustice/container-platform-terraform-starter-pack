@@ -19,5 +19,13 @@ spec:
         - name: hello-world
           image: ministryofjustice/helloworld-go:1.0.0
           imagePullPolicy: Always
+          securityContext:
+            seccompProfile:
+              type: RuntimeDefault
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            capabilities:
+              drop:
+                - ALL
           ports:
             - containerPort: 8080
