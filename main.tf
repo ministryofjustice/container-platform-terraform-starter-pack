@@ -2,12 +2,16 @@ resource "kubectl_manifest" "namespace" {
   yaml_body          = templatefile("${path.module}/manifests/namespace.yaml", {
     namespace = var.namespace
   })
+  server_side_apply = true
+  wait              = true
 }
 
 resource "kubectl_manifest" "service" {
   yaml_body         = templatefile("${path.module}/manifests/service.yaml", {
     namespace = var.namespace
   })
+  server_side_apply = true
+  wait              = true
 
   depends_on = [
     kubectl_manifest.namespace
@@ -20,6 +24,8 @@ resource "kubectl_manifest" "deployment" {
     image_repository = var.image_repository
     image_tag        = var.image_tag
   })
+  server_side_apply = true
+  wait              = true
 
   depends_on = [
     kubectl_manifest.namespace
@@ -34,6 +40,8 @@ resource "kubectl_manifest" "http_route" {
     hostname          = var.hostname
     namespace         = var.namespace
   })
+  server_side_apply = true
+  wait              = true
 
   depends_on = [
     kubectl_manifest.service,
