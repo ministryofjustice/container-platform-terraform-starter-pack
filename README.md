@@ -16,6 +16,9 @@ module "starter_pack" {
   # Required: namespace of the Gateway resource referenced by the HTTPRoute
   gateway_namespace = "gateway-system"
 
+  # Required: hostnames for the HTTPRoute
+  hostnames = ["starter-pack.apps.example.com"]
+
   # Required: container image repository
   image_repository = "557395370360.dkr.ecr.eu-west-2.amazonaws.com/cloud-platform/container-platform-terraform-starter-pack"
 
@@ -30,6 +33,7 @@ module "starter_pack" {
 |------|------|---------|-------------|
 | `gateway_name` | string | n/a | Name of the Gateway resource for the HTTPRoute to reference |
 | `gateway_namespace` | string | n/a | Namespace of the Gateway resource for the HTTPRoute to reference |
+| `hostnames` | list(string) | n/a | Hostnames for the HTTPRoute |
 | `image_repository` | string | n/a | Container image repository |
 | `image_tag` | string | `1.0.0` | Container image tag |
 

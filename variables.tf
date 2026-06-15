@@ -8,6 +8,17 @@ variable "gateway_namespace" {
   description = "Namespace of the Gateway resource that the HTTPRoute should reference"
 }
 
+variable "hostnames" {
+  type        = list(string)
+  description = "Hostnames for the HTTPRoute"
+}
+
+variable "namespace" {
+  type        = string
+  description = "Namespace to create for the starter pack"
+  default     = "starter-pack"
+}
+
 variable "enable_httproute" {
   type    = bool
   default = false
