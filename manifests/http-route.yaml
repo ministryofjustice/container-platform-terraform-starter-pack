@@ -8,7 +8,9 @@ spec:
     - name: ${gateway_name}
       namespace: ${gateway_namespace}
   hostnames:
+%{ for hostname in hostnames ~}
     - ${hostname}
+%{ endfor ~}
   rules:
     - matches:
         - path:

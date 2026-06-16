@@ -37,7 +37,7 @@ resource "kubectl_manifest" "http_route" {
   yaml_body         = templatefile("${path.module}/manifests/http-route.yaml", {
     gateway_name      = var.gateway_name
     gateway_namespace = var.gateway_namespace
-    hostname          = var.hostname
+    hostnames         = var.hostnames
     namespace         = var.namespace
   })
   server_side_apply = true
