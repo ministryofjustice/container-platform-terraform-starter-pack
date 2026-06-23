@@ -4,8 +4,8 @@ metadata:
   name: starter-pack-listenerset
   namespace: ${namespace}
 spec:
-  parentRefs:
-    - name: ${gateway_name}
+  parentRef:
+      name: ${gateway_name}
       namespace: ${gateway_namespace}
   listeners:
 %{ for hostname in hostnames ~}
