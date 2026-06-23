@@ -5,12 +5,10 @@ metadata:
   namespace: ${namespace}
 spec:
   parentRefs:
-    - name: ${gateway_name}
-      namespace: ${gateway_namespace}
-  hostnames:
-%{ for hostname in hostnames ~}
-    - ${hostname}
-%{ endfor ~}
+    - name: starter-pack-listenerset
+      namespace: ${namespace}
+      kind: ListenerSet
+      group: gateway.networking.k8s.io
   rules:
     - matches:
         - path:

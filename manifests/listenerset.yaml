@@ -1,0 +1,17 @@
+apiVersion: gateway.networking.k8s.io/v1alpha2
+kind: ListenerSet
+metadata:
+  name: starter-pack-listenerset
+  namespace: ${namespace}
+spec:
+  parentRefs:
+    - name: ${gateway_name}
+      namespace: ${gateway_namespace}
+  hostnames:
+%{ for hostname in hostnames ~}
+    - ${hostname}
+%{ endfor ~}
+  listeners:
+    - name: http
+      protocol: HTTP
+      port: 80
