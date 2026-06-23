@@ -13,11 +13,11 @@ module "starter_pack" {
   # Optional: set true to create an HTTPRoute resource
   enable_httproute = true
 
-  # Required when enable_httproute = true: name of the Gateway resource referenced by the HTTPRoute
-  gateway_name = "my-gateway"
+  # Required when enable_httproute = true: name of the shared platform ListenerSet
+  listenerset_name = "platform-listenerset"
 
-  # Required when enable_httproute = true: namespace of the Gateway resource referenced by the HTTPRoute
-  gateway_namespace = "gateway-system"
+  # Required when enable_httproute = true: namespace of the shared platform ListenerSet
+  listenerset_namespace = "platform-system"
 
   # Required when enable_httproute = true: hostnames for the HTTPRoute
   hostnames = ["starter-pack.apps.example.com"]
@@ -34,10 +34,10 @@ module "starter_pack" {
 
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
-| `enable_httproute` | bool | `false` | Whether to create an HTTPRoute resource |
-| `gateway_name` | string | `""` | Name of the Gateway resource for the HTTPRoute to reference (required when `enable_httproute` is `true`) |
-| `gateway_namespace` | string | `""` | Namespace of the Gateway resource for the HTTPRoute to reference (required when `enable_httproute` is `true`) |
 | `hostnames` | list(string) | `[]` | Hostnames for the HTTPRoute (required when `enable_httproute` is `true`) |
+| `enable_httproute` | bool | `false` | Whether to create an HTTPRoute resource |
+| `listenerset_name` | string | `""` | Name of the shared platform ListenerSet for the HTTPRoute to reference (required when `enable_httproute` is `true`) |
+| `listenerset_namespace` | string | `""` | Namespace of the shared platform ListenerSet for the HTTPRoute to reference (required when `enable_httproute` is `true`) |
 | `image_repository` | string | n/a | Container image repository |
 | `image_tag` | string | `1.0.0` | Container image tag |
 
@@ -49,7 +49,7 @@ When applied, this module creates:
 1. **Namespace**: `starter-pack`
 2. **Deployment**: Runs the hello-world Go application
 3. **Service**: Exposes the deployment on port 8080
-4. **HTTPRoute (optional)**: Routes HTTP traffic from the specified Gateway to the Service when `enable_httproute = true`
+4. **HTTPRoute (optional)**: Routes HTTP/HTTPS traffic from the shared platform ListenerSet to the Service when `enable_httproute = true`
 
 The hello-world app responds with a simple HTML page displaying:
 - Title: "Hello World"

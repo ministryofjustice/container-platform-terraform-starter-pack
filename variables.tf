@@ -1,22 +1,22 @@
-variable "gateway_name" {
+variable "listenerset_name" {
   type        = string
-  description = "Name of the Gateway resource that the HTTPRoute should reference"
+  description = "Name of the shared platform ListenerSet that the HTTPRoute should reference"
   default     = ""
 
   validation {
-    condition     = !var.enable_httproute || trimspace(var.gateway_name) != ""
-    error_message = "gateway_name must be set when enable_httproute is true."
+    condition     = !var.enable_httproute || trimspace(var.listenerset_name) != ""
+    error_message = "listenerset_name must be set when enable_httproute is true."
   }
 }
 
-variable "gateway_namespace" {
+variable "listenerset_namespace" {
   type        = string
-  description = "Namespace of the Gateway resource that the HTTPRoute should reference"
+  description = "Namespace of the shared platform ListenerSet that the HTTPRoute should reference"
   default     = ""
 
   validation {
-    condition     = !var.enable_httproute || trimspace(var.gateway_namespace) != ""
-    error_message = "gateway_namespace must be set when enable_httproute is true."
+    condition     = !var.enable_httproute || trimspace(var.listenerset_namespace) != ""
+    error_message = "listenerset_namespace must be set when enable_httproute is true."
   }
 }
 
