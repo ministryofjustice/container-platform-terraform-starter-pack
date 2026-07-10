@@ -5,8 +5,10 @@ metadata:
   namespace: ${namespace}
 spec:
   parentRefs:
-    - name: ${gateway_name}
-      namespace: ${gateway_namespace}
+    - name: ${listenerset_name}
+      namespace: ${listenerset_namespace}
+      kind: ListenerSet
+      group: gateway.networking.k8s.io
   hostnames:
 %{ for hostname in hostnames ~}
     - ${hostname}

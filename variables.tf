@@ -1,23 +1,13 @@
-variable "gateway_name" {
+variable "listenerset_name" {
   type        = string
-  description = "Name of the Gateway resource that the HTTPRoute should reference"
-  default     = ""
-
-  validation {
-    condition     = !var.enable_httproute || trimspace(var.gateway_name) != ""
-    error_message = "gateway_name must be set when enable_httproute is true."
-  }
+  description = "Name of the shared platform ListenerSet that the HTTPRoute should reference"
+  default     = "default-listenerset"
 }
 
-variable "gateway_namespace" {
+variable "listenerset_namespace" {
   type        = string
-  description = "Namespace of the Gateway resource that the HTTPRoute should reference"
-  default     = ""
-
-  validation {
-    condition     = !var.enable_httproute || trimspace(var.gateway_namespace) != ""
-    error_message = "gateway_namespace must be set when enable_httproute is true."
-  }
+  description = "Namespace of the shared platform ListenerSet that the HTTPRoute should reference"
+  default     = "envoy-gateway-system"
 }
 
 variable "hostnames" {
@@ -50,5 +40,5 @@ variable "image_repository" {
 variable "image_tag" {
   type        = string
   description = "Container image tag"
-  default     = "1.0.0"
+  default     = "1.2.1"
 }

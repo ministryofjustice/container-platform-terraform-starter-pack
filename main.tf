@@ -35,10 +35,10 @@ resource "kubectl_manifest" "deployment" {
 resource "kubectl_manifest" "http_route" {
   count = var.enable_httproute ? 1 : 0
   yaml_body = templatefile("${path.module}/manifests/http-route.yaml", {
-    gateway_name      = var.gateway_name
-    gateway_namespace = var.gateway_namespace
-    hostnames         = var.hostnames
-    namespace         = var.namespace
+    namespace             = var.namespace
+    listenerset_name      = var.listenerset_name
+    listenerset_namespace = var.listenerset_namespace
+    hostnames             = var.hostnames
   })
   server_side_apply = true
   wait              = true
