@@ -13,14 +13,12 @@ module "starter_pack" {
   # Optional: set true to create an HTTPRoute resource
   enable_httproute = true
 
-  # Required when enable_httproute = true: name of the shared platform ListenerSet
-  listenerset_name = "platform-listenerset"
-
-  # Required when enable_httproute = true: namespace of the shared platform ListenerSet
-  listenerset_namespace = "platform-system"
-
   # Required when enable_httproute = true: hostnames for the HTTPRoute
   hostnames = ["starter-pack.apps.example.com"]
+
+  # Optional: override the default ListenerSet (defaults to "default-listenerset" in "envoy-gateway-system")
+  # listenerset_name = "custom-listenerset"
+  # listenerset_namespace = "custom-namespace"
 
   # Required: container image repository
   image_repository = "557395370360.dkr.ecr.eu-west-2.amazonaws.com/cloud-platform/container-platform-terraform-starter-pack"
@@ -34,10 +32,10 @@ module "starter_pack" {
 
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
-| `hostnames` | list(string) | `[]` | Hostnames for the HTTPRoute (required when `enable_httproute` is `true`) |
 | `enable_httproute` | bool | `false` | Whether to create an HTTPRoute resource |
-| `listenerset_name` | string | `""` | Name of the shared platform ListenerSet for the HTTPRoute to reference (required when `enable_httproute` is `true`) |
-| `listenerset_namespace` | string | `""` | Namespace of the shared platform ListenerSet for the HTTPRoute to reference (required when `enable_httproute` is `true`) |
+| `listenerset_name` | string | `default-listenerset` | Name of the shared platform ListenerSet for the HTTPRoute to reference |
+| `listenerset_namespace` | string | `envoy-gateway-system` | Namespace of the shared platform ListenerSet for the HTTPRoute to reference |
+| `hostnames` | list(string) | `[]` | Hostnames for the HTTPRoute (required when `enable_httproute` is `true`) |
 | `image_repository` | string | n/a | Container image repository |
 | `image_tag` | string | `1.0.0` | Container image tag |
 
