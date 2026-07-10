@@ -37,7 +37,7 @@ module "starter_pack" {
 | `listenerset_namespace` | string | `envoy-gateway-system` | Namespace of the shared platform ListenerSet for the HTTPRoute to reference |
 | `hostnames` | list(string) | `[]` | Hostnames for the HTTPRoute (required when `enable_httproute` is `true`) |
 | `image_repository` | string | n/a | Container image repository |
-| `image_tag` | string | `1.0.0` | Container image tag |
+| `image_tag` | string | `1.2.1` | Container image tag |
 
 
 ## What Gets Deployed

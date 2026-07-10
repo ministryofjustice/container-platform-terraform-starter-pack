@@ -40,5 +40,5 @@ variable "image_repository" {
 variable "image_tag" {
   type        = string
   description = "Container image tag"
-  default     = "1.0.0"
+  default     = "1.2.1"
 }
